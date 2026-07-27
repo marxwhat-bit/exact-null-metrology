@@ -21,11 +21,11 @@ the wall-clock. `./reproduce.sh` checks exactly that and fails if anything moved
 
 ## Why an exact null
 
-The theory of parallel-decoding error exists (ParallelBench's Thm-1 floor and
-its matching upper bounds) and the methods exist (confidence, threshold, dilated,
-independent-set, low-discrepancy schedules). What did not exist is the
-**measurement**: a null against which realized per-edge dependence error can be
-tested with false-positive control.
+Parallel decoding has both a theory of its error (ParallelBench's Thm-1 floor and
+its matching upper bounds) and a range of schedules built to reduce it
+(confidence, threshold, dilated, independent-set, low-discrepancy). This archive
+supplies the missing third piece: a **null** against which realized per-edge
+dependence error can actually be tested, with false-positive control.
 
 Heuristic nulls cannot do this job. A permutation or shuffled-graph null is
 approximately zero and its residual is confounded with the effect. A field whose
@@ -44,9 +44,9 @@ An EBF is *not* a Markov field, which is the point: the two nulls fail in
 different places, and a scheduler can improve one while leaving the other intact
 or worse.
 
-The **ε dial** is the second half. Every published ground-truth construction we
-know of is a deterministic constraint — coupling is always maximal — so nobody
-can ask at *what coupling strength* a scheduler breaks. Here coupling is a
+The **ε dial** is the second half. Ground-truth constructions built from
+deterministic constraints hold coupling at its maximum, which makes *"at what
+coupling strength does a scheduler break?"* unaskable. Here coupling is instead a
 continuous parameter with an exact feasible window
 `ε ∈ [−1/λ_max(A), +1/|λ_min(A)|]`, both signs valid, with certified extremal
 values in the binary regime (odd cycles `MVE(C₉) = 22/45`, stars `≤ 1/√m`).
@@ -126,37 +126,25 @@ with the EBF arm firing at 1.000.
    Negligible on the real codebook, but an instrument that skipped this would
    have reported quantizer attenuation as sampler infidelity.
 
-**Bonus, and it scopes every conditional claim on discrete tokens.** Binarising
-(q = 2) destroys the GMRF conditional null — median |partial corr| **0.0696**,
-about 23% of the edge signal, no usable null. At real codebook resolution it is
-**rescued**: **0.0081**. Conditional-null validity is a function of codebook
-resolution, measured rather than assumed.
+**Codebook resolution decides whether the conditional null exists at all.**
+Binarising (q = 2) destroys the GMRF conditional null — median |partial corr|
+**0.0696**, about 23% of the edge signal, nothing usable. At real codebook
+resolution it is **rescued**: **0.0081**, because 8192 cells make conditioning on
+the token nearly equivalent to conditioning on the latent. Measured, not assumed.
 
----
+### Where the gates apply
 
-## What this does *not* claim
+Two limits follow directly from how the calibration is constructed, and both are
+worth knowing before pointing the estimators at anything:
 
-Stated up front, because the scope is the contribution.
-
-- **The exact nulls live in the controlled setting only.** Real models — real
-  dLLMs, real image generators — have no ground-truth dependence graph. Against
-  them this instrument offers permutation nulls, separator tests, matched-pairs
-  co-commit and known-structure probes; those are ordinary statistics, not exact
-  nulls, and are not what these two gates certify.
-- **Every new token space needs its own gate.** Image VQ is cleared here.
-  **Video VQ is not** — a coarse video tokenizer may not have a usable
-  conditional null at all (see the q = 2 result above).
-- **The mathematics is not the novelty.** The feasible-ε framework is the cut
-  polytope / elliptope (Huber–Marić; Deza–Laurent). It is the design principle,
-  not a claim.
-- **In continuous space a band-limited Gaussian field is just an MA filter**
-  (verified: MA(1) max lag-1 correlation 0.5000 = the ceiling). What is not
-  reproducible by a filter, and what this archive is about, is the **token-space**
-  exact null.
-- **Bit-identical reproduction is claimed for the reference environment**
-  (python 3.13.9 / numpy 2.4.2 / scipy 1.17.0, scipy-openblas 0.3.31). Elsewhere
-  the gate *thresholds* are what must hold; small last-digit drift from a
-  different BLAS is expected and is not a failure.
+- **Exact nulls require a known graph, so they exist only in the controlled
+  setting.** A real generative model has no ground-truth dependence structure to
+  test against. The estimators still run there — with permutation nulls,
+  separator tests and known-structure probes — but those are ordinary statistics
+  and are *not* what these gates certify.
+- **Each token space needs its own pass.** Image VQ is cleared by GM1-VQ. **Video
+  VQ is not**, and the q = 2 result above is the reason to check rather than
+  assume: a coarse tokenizer may have no usable conditional null at all.
 
 ---
 
@@ -171,6 +159,11 @@ pip install -r requirements.txt
 `reproduce.sh` runs each gate into a temp file and diffs it field-by-field
 against the archived report. It exits non-zero if any gate fails **or** if any
 archived number fails to reproduce.
+
+Bit-identical reproduction is claimed for the reference environment
+(python 3.13.9 / numpy 2.4.2 / scipy 1.17.0, scipy-openblas 0.3.31). Elsewhere
+the gate *thresholds* are the criterion; small last-digit drift from a different
+BLAS is expected and is not a failure.
 
 Or run the pieces directly:
 
@@ -223,24 +216,11 @@ is therefore *attained*: there is no realized-vs-floor gap on the ideal decoder.
 That is the point — bound slack is exactly zero, so any gap a **real** model
 shows is entirely the model's own departure, by construction.
 
-### Deliberately not in this release
-
-This is the calibrated instrument and its two gate reports. Work in flight that
-uses it — trained-model sweeps, scheduler comparisons, real-model deficit
-maps — is not here and will be released with the paper it belongs to.
-
 ---
 
 ## Citing
 
 Cite the archived record; `CITATION.cff` carries the machine-readable form and the DOI.
-
-This instrument underpins a research programme on parallel-decoding error whose
-paper is in preparation. The archive exists so that the instrument and its
-calibration are dated, fixed and citable independently of that paper's timeline —
-the measurement device is a contribution in its own right, and it should be
-possible to cite it without waiting on, or being scoped by, the findings it
-produces.
 
 ## Licence
 
