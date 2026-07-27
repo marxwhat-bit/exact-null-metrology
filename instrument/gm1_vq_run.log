@@ -1,0 +1,41 @@
+=== GM1-VQ (gate, m=8000, replicates=200) ===
+    token space: aMUSEd-256 VQ (8192 codes, 64-d)   PC1 0.6202  PC1-3 0.8963
+    quantizer w1=0.99928  high-order residual=6.15e-06
+
+(0) coupling attenuation induced by the token space (exact, closed form)
+    codes=8192   attenuation @eps 0.15/0.30/0.45 = 0.9993 / 0.9993 / 0.9994
+    codes=1024   attenuation @eps 0.15/0.30/0.45 = 0.9989 / 0.9990 / 0.9990
+    codes=256    attenuation @eps 0.15/0.30/0.45 = 0.9968 / 0.9970 / 0.9972
+    codes=64     attenuation @eps 0.15/0.30/0.45 = 0.9831 / 0.9842 / 0.9859
+    codes=16     attenuation @eps 0.15/0.30/0.45 = 0.9673 / 0.9683 / 0.9698
+
+(a) exact-field coverage, in the projected space
+    path_b1    eps=+0.450 -> target=+0.4497 (x0.9994)  cov=0.951 [0.946,0.956]  FWER=0.015  FDR-any=0.030  PASS
+    skip2      eps=+0.450 -> target=+0.4497 (x0.9994)  cov=0.948 [0.942,0.954]  FWER=0.030  FDR-any=0.030  PASS
+    grid8x8    eps=+0.240 -> target=+0.2398 (x0.9993)  cov=0.949 [0.946,0.951]  FWER=0.065  FDR-any=0.060  PASS
+    star16     eps=+0.240 -> target=+0.2398 (x0.9993)  cov=0.950 [0.942,0.957]  FWER=0.040  FDR-any=0.055  PASS
+
+(b) injected-leakage power, in the projected space
+    delta=0.000 (projected +0.0000)  power=0.000  FPR=0.0000
+    delta=0.020 (projected +0.0200)  power=0.052  FPR=0.0000
+    delta=0.040 (projected +0.0400)  power=0.512  FPR=0.0007
+    delta=0.060 (projected +0.0600)  power=0.968  FPR=0.0007
+    delta=0.100 (projected +0.0999)  power=1.000  FPR=0.0007
+    delta=0.200 (projected +0.1999)  power=1.000  FPR=0.0007
+    monotone=True localized=True PASS
+
+(c) AR(1) known-answer recovery, against the PROJECTED target
+    rho=+0.50 lag=1  latent=+0.5000 -> target=+0.4997  mean=+0.5000  ok
+    rho=+0.50 lag=2  latent=+0.2500 -> target=+0.2498  mean=+0.2502  ok
+    rho=+0.50 lag=3  latent=+0.1250 -> target=+0.1249  mean=+0.1246  ok
+    rho=-0.50 lag=1  latent=-0.5000 -> target=-0.4997  mean=-0.4999  ok
+    rho=-0.50 lag=2  latent=+0.2500 -> target=+0.2498  mean=+0.2500  ok
+    rho=-0.50 lag=3  latent=-0.1250 -> target=-0.1249  mean=-0.1253  ok
+    PASS
+
+(d) separator conditional-independence test in token space
+    condition on PC1..1:  GMRF (null TRUE) reject=0.050 median|pcorr|=0.0081   EBF (null FALSE) reject=1.000  PASS
+    condition on PC1..3:  GMRF (null TRUE) reject=0.061 median|pcorr|=0.0074   EBF (null FALSE) reject=1.000  PASS
+    PASS (best: PC1..1)
+
+=== GATE GM1-VQ: PASS ===  (169.5s, wrote gm1_vq_report.json)

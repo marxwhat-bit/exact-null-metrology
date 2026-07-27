@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# The aMUSEd-256 VQ codebook is NOT redistributed here -- it is a slice of
+# model weights under the CreativeML Open RAIL++-M licence. Fetch it with
+# `python3 instrument/fetch_codebook.py` (checksum verified in that script).
+amused256_codebook.npy

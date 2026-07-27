@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 marxwhat-bit
+Copyright (c) 2026 He Xiaosheng
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,26 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+---------------------------------------------------------------------------
+Scope note
+---------------------------------------------------------------------------
+
+The MIT licence above covers the SOFTWARE in this repository:
+
+    instrument/*.py
+
+The measurement RESULTS are licensed separately, under CC BY 4.0 -- see
+LICENSE-CC-BY-4.0.txt:
+
+    instrument/gm1_report.json
+    instrument/gm1_vq_report.json
+    instrument/gm1_vq_run.log
+
+NOT REDISTRIBUTED HERE: the aMUSEd-256 VQ codebook that GATE GM1-VQ calibrates
+against. It is a slice of the weights of `amused/amused-256`, released under
+the CreativeML Open RAIL++-M licence, whose use restrictions would otherwise
+attach to this entire archive. `instrument/fetch_codebook.py` downloads it from
+the Hugging Face Hub on demand, under that model's own terms, and verifies the
+checksum of the exact table used for the published run.

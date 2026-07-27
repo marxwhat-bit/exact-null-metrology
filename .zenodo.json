@@ -1,0 +1,31 @@
+{
+  "title": "Exact-null dependence metrology for parallel decoders",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "mit",
+  "version": "1.0.0",
+  "publication_date": "2026-07-27",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "He, Xiaosheng",
+      "orcid": "0009-0003-9998-6673"
+    }
+  ],
+  "description": "<p>A calibrated instrument for measuring the statistical dependence a parallel or masked decoder destroys or manufactures, against nulls that are <strong>exactly zero by construction</strong> &mdash; so any dependence found off the graph was created by the system under test.</p><p>Contents:</p><ul><li><strong>Two exact nulls.</strong> A covariance-sparse &epsilon;-biased field (exact <em>marginal</em> independence off-graph) and a precision-sparse Gaussian Markov random field (exact <em>conditional</em> independence across any separator). The two fail in different places, which is the point: a scheduler can improve one while leaving the other intact or worse.</li><li><strong>A continuous coupling dial</strong> with an exact feasible window &epsilon; &isin; [&minus;1/&lambda;<sub>max</sub>(A), +1/|&lambda;<sub>min</sub>(A)|], both signs valid, with certified extremal values in the binary regime (odd cycles MVE(C&#8329;) = 22/45, stars &le; 1/&radic;m). Existing ground-truth constructions are deterministic constraints where coupling is always maximal, so the question &ldquo;at what coupling strength does a scheduler break?&rdquo; has had no instrument.</li><li><strong>Per-edge hypothesis tests with false-positive control</strong> &mdash; max-statistic FWER and BH-FDR over non-edges, with calibrated p-values and calibrated intervals (plain Monte-Carlo p-values lack the resolution BH needs, and normal theory undercovers in the binary regime).</li><li><strong>The ParallelBench Theorem-1 floor</strong> in closed form as comparator, plus the ideal parallel decoder as subject. For that decoder the bound is <em>attained</em> exactly (verified to 1.8e-15), so bound slack is zero and any gap a real model shows is entirely the model's own.</li><li><strong>The nominal-token adaptation</strong> for vector-quantized image tokens: codebook projection plus the closed-form Hermite-spectrum edge target corr_proj(&rho;) = &Sigma; w<sub>k</sub> &rho;<sup>k</sup>. Two results generalize to any token space &mdash; the exact off-graph null survives any per-position projection by construction, while the edge target does not and must be recomputed, since |corr_proj| &le; |&rho;| means a token space strictly attenuates the dial.</li></ul><p><strong>Archived calibration.</strong> GATE GM1 (core, 2026-07-26): edge-CI coverage 0.948&ndash;0.951 across four zoo instances including the binary cycle at its certified extremal &epsilon;, FWER 0.025&ndash;0.060, injected-leakage power 0&rarr;1 monotone and localized at off-target FPR &le; 8e-4, AR(1) &rho;<sup>d</sup> recovery 12/12, separator test nominal on the GMRF where the null is true (0.061) and firing at 1.000 on the EBF where it is false. GATE GM1-VQ (aMUSEd-256 image-VQ token space, 2026-07-27): coverage 0.948&ndash;0.951 over path/skip/grid/star graphs, FWER 0.015&ndash;0.065, power 0&rarr;1 at FPR &le; 7e-4, AR(1) 12/12 against the projected target, separator 0.050/0.061 with the EBF arm at 1.000. Both gates are seeded and reproduce their archived reports bit-identically on the reference environment; <code>reproduce.sh</code> checks this and fails if any number moved.</p><p><strong>Scope, stated up front.</strong> The exact nulls live in the controlled setting; real models have no ground-truth dependence graph and are handled with permutation nulls and known-structure probes, which these gates do not certify. Image VQ is cleared here; video VQ is not, and a coarse tokenizer may not have a usable conditional null at all &mdash; binarizing destroys the conditional null (median |partial corr| 0.0696) while full codebook resolution rescues it (0.0081). The feasible-&epsilon; mathematics is the cut polytope / elliptope and is a design principle, not a claim.</p><p><strong>Licensing.</strong> MIT for the software, CC BY 4.0 for the measurement reports. The aMUSEd-256 VQ codebook the image gate calibrates against is <em>not</em> redistributed &mdash; it is a slice of model weights under the CreativeML Open RAIL++-M licence, whose use restrictions would otherwise attach to this record. A fetch script retrieves it under the model's own terms and verifies the checksum of the exact table used for the published run.</p>",
+  "keywords": [
+    "parallel decoding",
+    "masked diffusion",
+    "discrete diffusion",
+    "dependence measurement",
+    "exact null",
+    "calibration",
+    "metrology",
+    "vector quantization",
+    "false discovery rate",
+    "Gaussian Markov random field",
+    "conditional independence",
+    "reproducibility"
+  ],
+  "notes": "Calibration gates GM1 (2026-07-26) and GM1-VQ (2026-07-27), both passed. The measurement instrument underpinning an in-progress research programme on parallel-decoding error, archived separately so that it and its calibration are dated and citable independently of the paper's timeline. Software: MIT. Measurement reports (gm1_report.json, gm1_vq_report.json, gm1_vq_run.log): CC BY 4.0."
+}

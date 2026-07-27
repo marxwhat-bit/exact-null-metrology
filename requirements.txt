@@ -1,0 +1,12 @@
+# Core: the instrument and both gates are pure numpy/scipy, CPU-only.
+# Exact versions of the published 2026-07-27 run are pinned as comments; the
+# gates pass on any reasonably recent numpy/scipy, but byte-identical report
+# reproduction is only claimed for these.
+numpy>=1.24        # published run: 2.4.2  (scipy-openblas 0.3.31, Haswell kernels)
+scipy>=1.10        # published run: 1.17.0
+# python of the published run: 3.13.9
+
+# Only needed by instrument/fetch_codebook.py, to download the aMUSEd-256 VQ
+# codebook that GATE GM1-VQ calibrates against. Not needed for GATE GM1.
+huggingface_hub>=0.20   # published run: 1.4.1
+safetensors>=0.4

@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this instrument or its calibration reports, please cite the archived record."
+type: software
+title: "Exact-null dependence metrology for parallel decoders"
+abstract: >-
+  A calibrated instrument for measuring the statistical dependence a parallel or
+  masked decoder destroys or manufactures, against nulls that are exactly zero by
+  construction. Ships two exact nulls (a covariance-sparse epsilon-biased field
+  with exact marginal independence off-graph, and a precision-sparse Gaussian
+  Markov random field with exact conditional independence across separators), a
+  continuous coupling dial with an exact feasible window, per-edge hypothesis
+  tests with family-wise error control, and the ParallelBench Theorem-1 floor as
+  comparator. Includes the nominal-token adaptation and closed-form
+  Hermite-spectrum edge target required to run the same estimators in a
+  vector-quantized image token space. Two calibration gates are archived with
+  their reports: GM1 (core, 2026-07-26) and GM1-VQ (image-VQ token space,
+  aMUSEd-256, 2026-07-27), both passed, both reproducing bit-identically.
+authors:
+  - family-names: He
+    given-names: Xiaosheng
+    orcid: "https://orcid.org/0009-0003-9998-6673"
+version: 1.0.0
+date-released: 2026-07-27
+license: MIT
+license-url: "https://opensource.org/licenses/MIT"
+keywords:
+  - parallel decoding
+  - masked diffusion
+  - discrete diffusion
+  - dependence measurement
+  - exact null
+  - calibration
+  - metrology
+  - vector quantization
+  - false discovery rate
+  - Gaussian Markov random field
+# Filled in after the first Zenodo release -- run `python3 set_doi.py <doi>`.
+# doi: "10.5281/zenodo.XXXXXXX"
+# repository-code: "https://github.com/USER/exact-null-metrology"
