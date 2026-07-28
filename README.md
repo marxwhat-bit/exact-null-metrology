@@ -1,5 +1,7 @@
 # Exact-null dependence metrology for parallel decoders
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21640519.svg)](https://doi.org/10.5281/zenodo.21640519)
+
 **A calibrated measurement instrument, not a method.** It measures how much
 statistical dependence a parallel/masked decoder destroys or manufactures, on
 fields whose dependence structure is known **exactly** — every non-edge is
@@ -220,7 +222,7 @@ shows is entirely the model's own departure, by construction.
 
 ## Citing
 
-Cite the archived record; `CITATION.cff` carries the machine-readable form and the DOI.
+Cite the archived record — DOI [10.5281/zenodo.21640519](https://doi.org/10.5281/zenodo.21640519). `CITATION.cff` carries the machine-readable form.
 
 ## Licence
 

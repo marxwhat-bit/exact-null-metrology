@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.0.1 — 2026-07-27
+
+Citation metadata only. **No code, no reports, and no numbers changed** — the
+tree is otherwise identical to v1.0.0 and both gates still reproduce their
+archived reports bit-identically.
+
+Records the Zenodo concept DOI, which could not exist before v1.0.0 was
+archived: [10.5281/zenodo.21640519](https://doi.org/10.5281/zenodo.21640519).
+The concept DOI always resolves to the newest version and is the one to cite;
+the v1.0.0 version DOI is `10.5281/zenodo.21640520`.
+
+Written into `README.md` (badge + citation line), `CITATION.cff` and
+`.zenodo.json` by `set_doi.py`.
+
 ## v1.0.0 — 2026-07-27
 
 First public release: the calibrated instrument and the two gate reports it is

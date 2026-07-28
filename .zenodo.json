@@ -3,7 +3,7 @@
   "upload_type": "software",
   "access_right": "open",
   "license": "mit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publication_date": "2026-07-27",
   "language": "eng",
   "creators": [
@@ -27,5 +27,6 @@
     "conditional independence",
     "reproducibility"
   ],
-  "notes": "Calibration gates GM1 (2026-07-26) and GM1-VQ (2026-07-27), both passed, both reproducing their archived reports bit-identically. Software: MIT. Measurement reports (gm1_report.json, gm1_vq_report.json, gm1_vq_run.log): CC BY 4.0. The aMUSEd-256 VQ codebook is fetched and checksummed at run time, not redistributed."
+  "notes": "Calibration gates GM1 (2026-07-26) and GM1-VQ (2026-07-27), both passed, both reproducing their archived reports bit-identically. Software: MIT. Measurement reports (gm1_report.json, gm1_vq_report.json, gm1_vq_run.log): CC BY 4.0. The aMUSEd-256 VQ codebook is fetched and checksummed at run time, not redistributed.",
+  "doi": "10.5281/zenodo.21640519"
 }
